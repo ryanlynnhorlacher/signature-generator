@@ -1,4 +1,5 @@
 import React from 'react';
+import Output from '../components/Output'
 
 class App extends React.Component {
 	constructor(props) {
@@ -10,9 +11,11 @@ class App extends React.Component {
 		this.handlePhoneChange = this.handlePhoneChange.bind(this);
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleCheckbox = this.handleCheckbox.bind(this);
+		this.passCompanyInfo = this.passCompanyInfo.bind(this);
 		this.state = {
-			select: 'Ryan Horlacher Technologies', companies: null, 
+			companies: null, select: 'Ryan Horlacher Technologies', userInput: {
 			name: '', title: '', phone: '', email: '', checkbox: false}
+		}
 	}
 
 	componentWillMount() {
@@ -32,7 +35,7 @@ class App extends React.Component {
 	options() {
 		let newOptions = this.state.companies.map( company => {
 			return (
-				<option key={company.id} value={`company.name`}>{company.name}</option>
+				<option key={company.id} value={company.name}>{company.name}</option>
 			)
 		})
 		return newOptions
@@ -46,33 +49,38 @@ class App extends React.Component {
 
 	handleNameChange(e) {
 		this.setState({
-			name: e.target.value
+			userInput: { ...this.state.userInput, name: e.target.value }
 		})
 	}
 	handleTitleChange(e) {
 		this.setState({
-			title: e.target.value
+			userInput: { ...this.state.userInput, title: e.target.value }
 		})
 	}
 	handlePhoneChange(e) {
 		this.setState({
-			phone: e.target.value
+			userInput: { ...this.state.userInput, phone: e.target.value }
 		})
 	}
 	handleEmailChange(e) {
 		this.setState({
-			email: e.target.value
+			userInput: { ...this.state.userInput, email: e.target.value }
 		})
 	}
 	handleCheckbox(e) {
 		this.setState({
-			checkbox: e.target.checked
+			userInput: { ...this.state.userInput, checkbox: e.target.checked }
 		})
 	}
-
+	passCompanyInfo() {
+		return(
+			this.state.companies.find( company => {
+				return company.name === this.state.select
+			})
+		)
+	}
 
 	render() {
-		console.log(this.state)
 		return(
 			<div className='container'>
 				<div className='col-md-6'>
@@ -105,6 +113,7 @@ class App extends React.Component {
 			            </label>
 			        </div>
 			    </div>
+			    {this.state.companies ? <Output company={this.passCompanyInfo()} userInput={this.state.userInput} /> : null }
 			</div>
 		)
 	}
