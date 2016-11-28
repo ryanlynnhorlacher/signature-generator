@@ -9,6 +9,7 @@ class App extends React.Component {
 		this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.handlePhoneChange = this.handlePhoneChange.bind(this);
 		this.handleEmailChange = this.handleEmailChange.bind(this);
+		this.handleCheckbox = this.handleCheckbox.bind(this);
 		this.state = {
 			select: 'Ryan Horlacher Technologies', companies: null, 
 			name: '', title: '', phone: '', email: '', checkbox: false}
@@ -29,7 +30,6 @@ class App extends React.Component {
 	}
 
 	options() {
-		console.log(this.state.companies)
 		let newOptions = this.state.companies.map( company => {
 			return (
 				<option key={company.id} value={`company.name`}>{company.name}</option>
@@ -64,11 +64,18 @@ class App extends React.Component {
 			email: e.target.value
 		})
 	}
+	handleCheckbox(e) {
+		this.setState({
+			checkbox: e.target.checked
+		})
+	}
+
 
 	render() {
+		console.log(this.state)
 		return(
 			<div className='container'>
-				<form className='col-md-6'>
+				<div className='col-md-6'>
 					<div className='form-group'>
 						<label>Company</label>
 						<select className='form-control' value={this.state.select} onChange={ this.handleSelect} >
@@ -91,7 +98,13 @@ class App extends React.Component {
 			        	<label>Email</label>
 			        	<input className='form-control' value={this.state.fullName} onChange={this.handleEmailChange} />
 			        </div>
-			    </form>
+			        <div className="checkbox form-group">
+			            <label>
+			            	<input type="checkbox" checked={this.state.checked} onChange={this.handleCheckbox} />
+			            	Add front desk phone number
+			            </label>
+			        </div>
+			    </div>
 			</div>
 		)
 	}
