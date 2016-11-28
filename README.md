@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app was created as a proof of concept.  The idea is to have a central hub from which any employee can generate a custom email signature.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To run:
+1. Clone repository
+2. Run command: bundle install
+3. Run command: npm install
+4. Start weback dev server with command: npm run dev_server
+5. Start rails server with command: bundle exec rails s
+6. Content is viewed on localhost:3000
