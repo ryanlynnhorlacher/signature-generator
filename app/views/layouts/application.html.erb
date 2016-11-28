@@ -4,11 +4,15 @@
     <title>SignatureGenerator</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+        <% if Rails.env.development? %>
+        <script src="http://localhost:3808/webpack-dev-server.js"></script>
+      <% end %>
+</head>
 
   <body>
     <%= yield %>
-  </body>
+  <%= javascript_include_tag *webpack_asset_paths('application') %>
+</body>
 </html>

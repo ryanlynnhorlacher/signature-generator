@@ -19,3 +19,6 @@
 .log
 webpack/.DS_Store
 npm-debug.log
+# Added by webpack-rails
+/node_modules
+/public/webpack
