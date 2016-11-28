@@ -46,7 +46,6 @@ class App extends React.Component {
 			select: e.target.value
 		})
 	}
-
 	handleNameChange(e) {
 		this.setState({
 			userInput: { ...this.state.userInput, name: e.target.value }
@@ -58,6 +57,8 @@ class App extends React.Component {
 		})
 	}
 	handlePhoneChange(e) {
+		e.target.value[e.target.value.length - 1]
+		e.stopPropagation()
 		this.setState({
 			userInput: { ...this.state.userInput, phone: e.target.value }
 		})
