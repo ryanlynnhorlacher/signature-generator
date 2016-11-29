@@ -86,7 +86,7 @@ class App extends React.Component {
 	handleEmailChange(e) {
 		let value = e.target.value
 		let $email = $('#email')
-		if ( value.match(/^[a-zA-Z1-9]+@[a-zA-Z1-9]+\.[a-zA-Z1-9]{3}$/)) {
+		if ( value.match(/^.*@.*$/)) {
 			$email.removeClass('has-error')
 			$email.addClass('has-success')
 		} else if (e.target.value.length === 0) {
