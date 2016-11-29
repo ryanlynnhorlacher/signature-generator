@@ -15,3 +15,19 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+h1, h2, h3, h4, h5, h6, label {
+	font-family: 'Righteous', cursive;
+}
+
+p {
+	font-family: 'Istok Web', sans-serif;
+}
+
+body {
+	background-image: asset-data-url('White-Background-BD1.png');
+}
+
+.white {
+	background-color: white;
+}

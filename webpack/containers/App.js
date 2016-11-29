@@ -1,6 +1,8 @@
 import React from 'react';
 import Output from '../components/Output'
 import Header from '../components/Header'
+import StepOne from '../components/StepOne'
+import StepTwo from '../components/StepTwo'
 
 class App extends React.Component {
 	constructor(props) {
@@ -116,36 +118,42 @@ class App extends React.Component {
 			<div className='container'>
 				<Header />
 				<div className='col-md-6'>
-					<div className='form-group'>
-						<label>Company</label>
-						<select className='form-control' value={this.state.select} onChange={ this.handleSelect} >
-							{this.state.companies ? this.options() : null}
-				        </select >
-			        </div>
-			        <div className='form-group'>
-			        	<label>Full Name</label>
-			        	<input className='form-control' value={this.state.userInput.name} onChange={this.handleNameChange} />
-			        </div>
-			        <div className='form-group'>
-			        	<label>Job Title</label>
-			        	<input className='form-control' value={this.state.userInput.title} onChange={this.handleTitleChange} />
-			        </div>
-			        <div id='phone' className='form-group'>
-			        	<label className='control-label'>Direct Phone Number</label>
-			        	<input className='form-control' value={this.state.userInput.direct} onChange={this.handlePhoneChange} />
-			        </div>
-			        <div id='email' className='form-group'>
-			        	<label className='control-label'>Email</label>
-			        	<input className='form-control' value={this.state.userInput.email} onChange={this.handleEmailChange} />
-			        </div>
-			        <div className="checkbox form-group">
-			            <label>
-			            	<input type="checkbox" checked={this.state.userInput.checked} onChange={this.handleCheckbox} />
-			            	Add front desk phone number
-			            </label>
-			        </div>
+				    <StepOne />
+					<div className=''>
+						<div className='form-group'>
+							<label>Company</label>
+							<select className='form-control' value={this.state.select} onChange={ this.handleSelect} >
+								{this.state.companies ? this.options() : null}
+					        </select >
+				        </div>
+				        <div className='form-group'>
+				        	<label>Full Name</label>
+				        	<input className='form-control' value={this.state.userInput.name} onChange={this.handleNameChange} />
+				        </div>
+				        <div className='form-group'>
+				        	<label>Job Title</label>
+				        	<input className='form-control' value={this.state.userInput.title} onChange={this.handleTitleChange} />
+				        </div>
+				        <div id='phone' className='form-group'>
+				        	<label className='control-label'>Direct Phone Number</label>
+				        	<input className='form-control' value={this.state.userInput.direct} onChange={this.handlePhoneChange} />
+				        </div>
+				        <div id='email' className='form-group'>
+				        	<label className='control-label'>Email</label>
+				        	<input className='form-control' value={this.state.userInput.email} onChange={this.handleEmailChange} />
+				        </div>
+				        <div className="checkbox form-group">
+				            <label>
+				            	<input type="checkbox" checked={this.state.userInput.checked} onChange={this.handleCheckbox} />
+				            	Add front desk phone number
+				            </label>
+				        </div>
+				    </div>
 			    </div>
-			    {this.state.companies ? <Output company={this.passCompanyInfo()} userInput={this.state.userInput} /> : null }
+			    <StepTwo />
+			    <button className='btn btn-default' onClick={() => this.refs.output.selectAll()} >Select Signature</button>
+			    <br />
+			    {this.state.companies ? <Output ref='output' company={this.passCompanyInfo()} userInput={this.state.userInput} /> : null }
 			</div>
 		)
 	}

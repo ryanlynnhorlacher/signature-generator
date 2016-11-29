@@ -2,13 +2,13 @@ import React from 'react'
 
 const Header = () => {
 	return(
-		<div>
+		<div className='col-xs-12'>
 			<h2>
 				Ryan Horlacher Technologies
 			</h2>
-			<h4>
+			<h3>
 				Why a Standard Signature?
-			</h4>
+			</h3>
 			<p>
 				If email is sent from a corporate email address, it represents our entire company. 
 				Uniform email signatures present a professional image while providing brand consistency 

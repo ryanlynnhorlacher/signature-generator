@@ -1,40 +1,56 @@
 import React from 'react';
 
-const Output = (props) => {
-	return(
-		<div className='col-md-6' style={Styles.border}>
-			<div style={Styles.wrapper} >
-				<div style={Styles.name}>
-					{props.userInput.name}
+class Output extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+
+	selectAll(e) {
+		let $selection = $('#selection')
+		let rangeObj = document.createRange();
+		rangeObj.selectNodeContents($selection[0]);
+		let selection = window.getSelection();
+	    selection.removeAllRanges();
+	    selection.addRange(rangeObj);
+        
+	}
+
+	render() {
+		return(
+			<div id='selection' className='col-md-6 white pull-left' style={Styles.border} >
+				<div style={Styles.wrapper} >
+					<div style={Styles.name}>
+						{this.props.userInput.name}
+					</div>
+					<div>
+						{this.props.userInput.title}
+					</div>
 				</div>
 				<div>
-					{props.userInput.title}
+					{this.props.userInput.phone ? `D: ${this.props.userInput.phone}` : null}
+					{this.props.userInput.phone && this.props.userInput.checkbox ? ' | ' : null}
+					{this.props.userInput.checkbox ? `O: ${this.props.company.frontDeskPhone}` : null}
+				</div>
+				<div>
+					{this.props.userInput.email ? this.props.userInput.email : null }
+				</div>
+
+				<div>
+					{this.props.company.website}
+				</div>
+				<div >
+					<img style={Styles.image} src={`${this.props.company.imageLink}`} />
 				</div>
 			</div>
-			<div>
-				{props.userInput.phone ? `D: ${props.userInput.phone}` : null}
-				{props.userInput.phone && props.userInput.checkbox ? ' | ' : null}
-				{props.userInput.checkbox ? `O: ${props.company.frontDeskPhone}` : null}
-			</div>
-			<div>
-				{props.userInput.email ? props.userInput.email : null }
-			</div>
-
-			<div>
-				{props.company.website}
-			</div>
-			<div >
-				<img style={Styles.image} src={`${props.company.imageLink}`} />
-			</div>
-		</div>
-	)
+		)
+	}
 }
 
 const Styles = {
 	image: {height: '100px', width: '200px'},
 	name: {fontSize: '16px', fontWeight: 'bold'},
 	companyName: {marginTop: '5px'},
-	border: {border: '1px solid black'},
+	border: {border: '1px solid #ccc', borderRadius: '4px'},
 	wrapper: {marginBottom: '5px'}
 }
 
