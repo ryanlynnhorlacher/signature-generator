@@ -18,15 +18,13 @@ class Output extends React.Component {
 	render() {
 		return(
 			<div id='selection' className='col-md-6 white pull-left' style={Styles.border} >
-				<div style={Styles.wrapper} >
-					<div style={Styles.name}>
-						{this.props.userInput.name}
-					</div>
-					<div>
-						{this.props.userInput.title}
-					</div>
+				<div style={Styles.name}>
+					{this.props.userInput.name}
 				</div>
 				<div>
+					{this.props.userInput.title}
+				</div>
+				<div style={Styles.spacer}>
 					{this.props.userInput.phone ? `D: ${this.props.userInput.phone}` : null}
 					{this.props.userInput.phone && this.props.userInput.checkbox ? ' | ' : null}
 					{this.props.userInput.checkbox ? `O: ${this.props.company.frontDeskPhone}` : null}
@@ -35,7 +33,7 @@ class Output extends React.Component {
 					{this.props.userInput.email ? this.props.userInput.email : null }
 				</div>
 
-				<div>
+				<div style={Styles.spacer} >
 					{this.props.company.website}
 				</div>
 				<div >
@@ -51,7 +49,8 @@ const Styles = {
 	name: {fontSize: '16px', fontWeight: 'bold'},
 	companyName: {marginTop: '5px'},
 	border: {border: '1px solid #ccc', borderRadius: '4px'},
-	wrapper: {marginBottom: '5px'}
+	wrapper: {marginBottom: '5px'},
+	spacer: {lineHeight: '24px', paddingTop: '7px', marginBottom: '-5px'}
 }
 
 export default Output
