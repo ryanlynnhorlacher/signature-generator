@@ -1,5 +1,6 @@
 import React from 'react';
 import Output from '../components/Output'
+import Header from '../components/Header'
 
 class App extends React.Component {
 	constructor(props) {
@@ -57,13 +58,42 @@ class App extends React.Component {
 		})
 	}
 	handlePhoneChange(e) {
-		e.target.value[e.target.value.length - 1]
-		e.stopPropagation()
+		let value = e.target.value
+		let $phone = $('#phone')
+		if (value.slice(-1).match(/\d/) === null) {
+			value = value.slice(0, e.target.value.length - 1)
+			e.target.value = value
+		}
+		e.target.value.length > 10 ? e.target.value = value.slice(0, e.target.value.length - 1) : null
+		let length = e.target.value.length
+		if ( length === 10 ) {
+			$phone.removeClass('has-error')
+			$phone.addClass('has-success')
+		} else if (length === 0) {
+			$phone.removeClass('has-error')
+			$phone.removeClass('has-success')
+		} else {
+			$phone.addClass('has-error')
+		}
+		length > 0 ? value = `(${value.slice(0, 3)})${value.slice(3, 6)}-${value.slice(6, 10)}` : null
+
 		this.setState({
-			userInput: { ...this.state.userInput, phone: e.target.value }
+			userInput: { ...this.state.userInput, phone: value}
 		})
 	}
 	handleEmailChange(e) {
+		let value = e.target.value
+		let $email = $('#email')
+		if ( value.match(/^[a-zA-Z1-9]+@[a-zA-Z1-9]+\.[a-zA-Z1-9]{3}$/)) {
+			$email.removeClass('has-error')
+			$email.addClass('has-success')
+		} else if (e.target.value.length === 0) {
+			$email.removeClass('has-error')
+			$email.removeClass('has-success')
+		} else {
+			$email.addClass('has-error')
+		}
+		e.target.value.length === 0 ? $email.removeClass('has-error') : null
 		this.setState({
 			userInput: { ...this.state.userInput, email: e.target.value }
 		})
@@ -84,6 +114,7 @@ class App extends React.Component {
 	render() {
 		return(
 			<div className='container'>
+				<Header />
 				<div className='col-md-6'>
 					<div className='form-group'>
 						<label>Company</label>
@@ -93,23 +124,23 @@ class App extends React.Component {
 			        </div>
 			        <div className='form-group'>
 			        	<label>Full Name</label>
-			        	<input className='form-control' value={this.state.fullName} onChange={this.handleNameChange} />
+			        	<input className='form-control' value={this.state.userInput.name} onChange={this.handleNameChange} />
 			        </div>
 			        <div className='form-group'>
 			        	<label>Job Title</label>
-			        	<input className='form-control' value={this.state.fullName} onChange={this.handleTitleChange} />
+			        	<input className='form-control' value={this.state.userInput.title} onChange={this.handleTitleChange} />
 			        </div>
-			        <div className='form-group'>
-			        	<label>Direct Phone Number</label>
-			        	<input className='form-control' value={this.state.fullName} onChange={this.handlePhoneChange} />
+			        <div id='phone' className='form-group'>
+			        	<label className='control-label'>Direct Phone Number</label>
+			        	<input className='form-control' value={this.state.userInput.direct} onChange={this.handlePhoneChange} />
 			        </div>
-			        <div className='form-group'>
-			        	<label>Email</label>
-			        	<input className='form-control' value={this.state.fullName} onChange={this.handleEmailChange} />
+			        <div id='email' className='form-group'>
+			        	<label className='control-label'>Email</label>
+			        	<input className='form-control' value={this.state.userInput.email} onChange={this.handleEmailChange} />
 			        </div>
 			        <div className="checkbox form-group">
 			            <label>
-			            	<input type="checkbox" checked={this.state.checked} onChange={this.handleCheckbox} />
+			            	<input type="checkbox" checked={this.state.userInput.checked} onChange={this.handleCheckbox} />
 			            	Add front desk phone number
 			            </label>
 			        </div>
@@ -119,7 +150,6 @@ class App extends React.Component {
 		)
 	}
 }
-
 
 export default App;
 

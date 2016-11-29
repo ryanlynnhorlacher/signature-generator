@@ -1,5 +1,5 @@
 	names = ['SnappingTurtle Inc.', 'FutureTech', 'The Junkyard', 'A Really Nice Place to Work']
-	phones = ['801-555-1234', '678-912-3456', '234-345-4567']
+	phones = ['(801)555-1234', '(678)912-3456', '(234)345-4567']
 	websites = ['www.snappingturtle.com', 'www.futuretech.com', 'www.thejunkyard.com', 'www.areallyniceplacetowork.com']
 	logo_links = [
 		'http://vectorlogofree.com/wp-content/uploads/2013/03/mercedes-benz-automotive-vector-logo.png',
